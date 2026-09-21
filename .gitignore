@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Isaac Sim runtime data (cache/config/logs/pkg persisted by the Docker
+# Compose volumes) — owned by uid 1234 inside the container, never commit it.
+/data/
+/data-*/

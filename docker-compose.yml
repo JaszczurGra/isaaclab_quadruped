@@ -1,0 +1,35 @@
+# Browser-based WebRTC viewer for Isaac Sim / Isaac Lab.
+#
+# This does NOT run Isaac Sim itself — pair it with the Isaac Lab dev container
+# (third_party/IsaacLab/docker/container.py) and launch a script with
+# --livestream 2 from inside that container. See INSTALLATION.md.
+#
+# Usage:
+#   ISAACSIM_HOST=<host-ip> docker compose -f docker-compose.yml up --build -d
+#
+# Multiple instances (use -p to namespace, override ports):
+#   ISAACSIM_SIGNAL_PORT=49200 ISAACSIM_STREAM_PORT=48100 WEB_VIEWER_PORT=8211 \
+#     docker compose -p isim2 -f docker-compose.yml up --build -d
+#
+# Override any variable below via the shell environment or a .env file next to
+# this compose file.
+
+services:
+
+  web-viewer:
+    build:
+      context: ./web-viewer
+      network: host
+      args:
+        ISAACSIM_HOST: ${ISAACSIM_HOST:-127.0.0.1}
+        ISAACSIM_SIGNAL_PORT: ${ISAACSIM_SIGNAL_PORT:-49100}
+        ISAACSIM_STREAM_PORT: ${ISAACSIM_STREAM_PORT:-47998}
+    network_mode: "host"
+    command: ["npx", "vite", "preview", "--host", "--port", "${WEB_VIEWER_PORT:-8210}"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${WEB_VIEWER_PORT:-8210}/"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+    restart: unless-stopped
