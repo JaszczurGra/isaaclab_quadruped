@@ -1,0 +1,22 @@
+# Extra bind mount so the Isaac Lab dev container can see this repo's own
+# scripts/ folder (isaaclab_quadruped/scripts), one level above the IsaacLab
+# submodule. Not merged automatically — pass it explicitly via --files.
+#
+# Usage (from IsaacLab/docker):
+#   ./container.py start base --files ../../docker-compose.scripts.yaml
+#   ./container.py enter base --files ../../docker-compose.scripts.yaml
+#   ./container.py stop  base --files ../../docker-compose.scripts.yaml
+#
+# Inside the container, this repo's scripts live at
+# ${DOCKER_ISAACLAB_PATH}/quadruped_scripts (e.g. /workspace/isaaclab/quadruped_scripts).
+
+services:
+  isaac-lab-base:
+    volumes:
+      - type: bind
+        source: ../../scripts
+        target: ${DOCKER_ISAACLAB_PATH}/quadruped_scripts
+      - type: bind
+        source: ../../models
+        target: ${DOCKER_ISAACLAB_PATH}/quadruped_models
+

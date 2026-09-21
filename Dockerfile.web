@@ -1,0 +1,12 @@
+# Adds the Viser web-based visualizer on top of the Isaac Lab base image.
+# Layered the same way IsaacLab/docker/Dockerfile.ros2 layers on isaac-lab-base,
+# so it survives `git submodule update` on IsaacLab instead of living inside it.
+
+# What is the docker name suffix for the base image to load? (defaults to empty string)
+ARG DOCKER_NAME_SUFFIX=""
+
+FROM isaac-lab-base${DOCKER_NAME_SUFFIX} AS web
+
+# isaac-lab-base already finished its own pip installs (isaaclab.sh --install, etc.)
+# and ends as the non-root `isaaclab` user with ISAACLAB_PATH set - reuse both as-is.
+# RUN ${ISAACLAB_PATH}/isaaclab.sh -p -m pip install "isaaclab_visualizers[viser]"
