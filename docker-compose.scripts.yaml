@@ -12,6 +12,7 @@
 
 services:
   isaac-lab-base:
+    network_mode: "host"
     volumes:
       - type: bind
         source: ../../scripts

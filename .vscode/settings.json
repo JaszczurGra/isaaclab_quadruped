@@ -1,0 +1,24 @@
+{
+    // Editor-only setup so Pylance can resolve isaaclab/isaaclab_* imports and give type
+    // hints for scripts/*.py, even though the scripts are actually run inside Docker.
+    "python.languageServer": "Pylance",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/IsaacLab/source/isaaclab",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_assets",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_contrib",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_experimental",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_mimic",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_newton",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_ov",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_ovphysx",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_physx",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_ppisp",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_rl",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_tasks",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_tasks_experimental",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_teleop",
+        "${workspaceFolder}/IsaacLab/source/isaaclab_visualizers",
+        "${workspaceFolder}/scripts"
+    ]
+}

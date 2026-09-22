@@ -39,7 +39,7 @@ git submodule update --init --recursive
 
 # starting
 
-./container.py start base --files ../../docker-compose.scripts.yaml
+IsaacLab/docker/container.py start base --files ../../docker-compose.scripts.yaml
 
 
 
@@ -52,7 +52,7 @@ tmux new -s train
 python scripts/tutorials/00_sim/create_empty.py --headless
 
 
-python scripts/demos/quadrupeds.py --livestream 2 --visualizer viser
+python scripts/demos/quadrupeds.py --viz viser
  
 
 
