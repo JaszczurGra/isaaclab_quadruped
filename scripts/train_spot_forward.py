@@ -16,9 +16,7 @@ import argparse
 
 from isaaclab.app import AppLauncher
 
-# Number of parallel environments to simulate. Hardcoded here (instead of a --num_envs CLI
-# flag) per project preference; edit this constant and re-run to change it.
-NUM_ENVS = 2048
+
 
 parser = argparse.ArgumentParser(description="Train Spot to run forward with RSL-RL.")
 parser.add_argument("--max_iterations", type=int, default=None, help="Override the PPO runner's max_iterations.")
@@ -32,7 +30,7 @@ parser.add_argument("--seed", type=int, default=None, help="Override the trainin
 parser.add_argument(
     "--num_envs",
     type=int,
-    default=None,
+    default=2048,
     help="Override the hardcoded NUM_ENVS. Escape hatch for running a second job on a GPU that's already busy.",
 )
 AppLauncher.add_app_launcher_args(parser)
@@ -62,7 +60,7 @@ TASK_NAME = "Isaac-Spot-Forward-v0"
 def main():
     """Main function."""
 
-    num_envs = args_cli.num_envs if args_cli.num_envs is not None else NUM_ENVS
+    num_envs = args_cli.num_envs 
 
     env_cfg = SpotForwardEnvCfg()
     env_cfg.scene.num_envs = num_envs
