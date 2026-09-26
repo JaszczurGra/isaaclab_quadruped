@@ -46,7 +46,8 @@ IsaacLab/docker/container.py start base --files ../../docker-compose.scripts.yam
 ## Entering the 
 
 IsaacLab/docker/container.py enter base
-tmux new -s train
+
+
 
 
 python scripts/tutorials/00_sim/create_empty.py --headless
@@ -54,10 +55,17 @@ python scripts/tutorials/00_sim/create_empty.py --headless
 
 python scripts/demos/quadrupeds.py --viz viser
  
-
+python quadruped_scripts/train_spot_forward.py --viz viser --device cuda:0
 
 
 # web-viewer is redunant
 
 
+tmux new -s train
 
+
+
+
+
+# Disable omni log in:
+isaac-sim/kit/data/Kit/IsaacLab/3.0/user.config.json 
